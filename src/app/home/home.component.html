@@ -1,4 +1,12 @@
-<div>
+<div class="center">
     <h1>Home</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi dicta dolor fugit ipsa quidem quo natus consequatur, accusantium beatae eveniet corporis mollitia? Nihil, corporis. Nobis quis vitae sint dignissimos aut.</p>
+    <div class="form">
+        <label>name</label>
+        <input type="text" placeholder="name" #name>
+        <label>url</label>
+        <input type="text" placeholder="url" #url>
+        <button mat-raised-button color="primary" (click)="addUser(name.value,url.value)">Add</button>
+    </div>
+    <p>  accusantium beatae eveniet corporis mollitia? Nihil, corporis. Nobis quis vitae sint dignissimos aut.</p>
+    <p>  accusantium beatae eveniet corporis mollitia? Nihil, corporis. Nobis quis vitae sint dignissimos aut.</p>
 </div>

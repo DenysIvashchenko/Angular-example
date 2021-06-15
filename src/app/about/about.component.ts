@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { RemoveUser } from '../actions/user.actions';
+import { Store,Select } from '@ngxs/store'; 
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-about',
@@ -7,9 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-  constructor() { }
+  users$!: Observable<User>;
+
+  constructor(public store: Store) {
+    this.users$ = this.store.select( state => state.users.users)
+   }
 
   ngOnInit(): void {
+    console.log(this.users$.subscribe((a)=> console.log(a)))
   }
 
 }
