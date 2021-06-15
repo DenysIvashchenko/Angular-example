@@ -1,11 +1,14 @@
 import { User } from './../models/user.model';
 import { State,Action,StateContext,Selector } from "@ngxs/store";
 import { AddUser,RemoveUser } from "../actions/user.actions";
+import { Injectable } from '@angular/core';
 
+
+@Injectable()
 export class UserStateModel {
-    name?: string
     users!: User[];
 }
+
 @State<UserStateModel>({
     name: 'users',
     defaults: {
@@ -13,12 +16,13 @@ export class UserStateModel {
     }
 })
 
+@Injectable()
 export class UserState {
+
     @Selector()
     static getUsers(state: UserStateModel): User[] {
         return state.users
     }
-
     @Action(AddUser)
     add({getState,patchState}:StateContext<UserStateModel>,{payload}:AddUser ) {
         const state = getState();

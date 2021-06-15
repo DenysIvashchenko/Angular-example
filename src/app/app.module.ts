@@ -2,6 +2,8 @@ import { UserState } from './state/user.state';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import {MatButtonModule} from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatSliderModule } from '@angular/material/slider';
 import { NgxsModule } from '@ngxs/store';
@@ -24,6 +26,8 @@ import { environment } from 'src/environments/environment';
     MenuComponent,
   ],
   imports: [
+    MatFormFieldModule,
+    MatButtonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
