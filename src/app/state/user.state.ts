@@ -24,14 +24,14 @@ export class UserState {
         return state.users
     }
     @Action(AddUser)
-    add({getState,patchState}:StateContext<UserStateModel>,{payload}:AddUser ) {
+    add({getState,patchState}:StateContext<UserStateModel>,{payload}:AddUser ): void {
         const state = getState();
         patchState({
             users:[...state.users, payload]
         })
     }
     @Action(RemoveUser)
-    remove({getState,patchState}: StateContext<UserStateModel>,{payload}:RemoveUser) {
+    remove({getState,patchState}: StateContext<UserStateModel>,{payload}:RemoveUser): void {
         patchState({
             users: getState().users.filter(item => item.name !== payload)
         })

@@ -1,4 +1,10 @@
 <div class="center">
     <h1>About</h1>
+    <!-- do out on page from store -->
+    <div *ngFor="let user of users$ |async">
+        <p>{{user.name}}</p>
+        <p><a href={{user.url}}>{{user.url}}</a></p>
+        <button mat-raised-button color="warn" (click)="delUser(user.name)" >delete</button>
+    </div>
     <app-menu></app-menu>
 </div>
