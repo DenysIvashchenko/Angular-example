@@ -1,0 +1,9 @@
+    <div class="navigation">
+        <button mat-button color="primary">Main</button>
+        <button *ngFor='let nav of navLinks$ | async' mat-button color="primary">
+            <mat-icon>arrow_right_alt</mat-icon>
+            {{nav.name}}
+        </button>
+    </div>
+    
+

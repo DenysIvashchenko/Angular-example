@@ -1,7 +1,9 @@
 <div class="center">
     <h1>Home</h1>
     <!-- put some data to the store -->
-    <div class="form">
+    <button mat-raised-button color="primary" *ngIf="isColapse" (click)="colapseToggle()">Open</button>
+    <button mat-raised-button color="warn" *ngIf="!isColapse" (click)="colapseToggle()">Close</button>
+    <div class="form" *ngIf="!isColapse">
         <label>name</label>
         <input type="text" placeholder="name" #name>
         <label>url</label>

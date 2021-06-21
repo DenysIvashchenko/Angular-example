@@ -21,6 +21,7 @@ export class UserState {
 
     @Selector()
     static getUsers(state: UserStateModel): User[] {
+        console.log('getUsers',state.users)
         return state.users
     }
     @Action(AddUser)
