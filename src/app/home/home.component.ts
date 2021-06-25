@@ -1,3 +1,4 @@
+import { NavBarService } from './../servisec/nav-bar.service';
 import { AddNavPath, DeleteNavPath } from './../actions/navigation.action';
 import { Router } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -5,9 +6,6 @@ import { Store } from '@ngxs/store';
 import { AddUser } from '../actions/user.actions';
 import { Nav } from '../models/nav.model';
 
-// const path:Nav[] = [
-//   {name:"Home",path:"/home",isActive:true}
-// ]
 
 @Component({
   selector: 'app-home',
@@ -19,7 +17,8 @@ export class HomeComponent implements OnInit,OnDestroy {
 
   constructor(
     public store: Store,
-    public router: Router
+    public router: Router,
+    public navBarService : NavBarService
     ) {}
 
   /**
@@ -29,17 +28,17 @@ export class HomeComponent implements OnInit,OnDestroy {
     this.store.dispatch(new AddUser({name:name, url:url}));
     console.log(name,url)
   }
-  creatNavPath(name:string,path: string,isActive:boolean): Nav[] {
-    return [{name:name,path:path,isActive:isActive}]
-  }
-
+ 
   colapseToggle():void {
     this.isColapse = !this.isColapse
   }
   
   
   ngOnInit(): void {
-    this.store.dispatch(new AddNavPath(this.creatNavPath("Home","/home",true)))
+    this.store.dispatch(new AddNavPath(this.navBarService.createPath(
+      {name:'homePage',path:'/',isActive:false},
+      {name:'Page',path:'/'})
+      ))
   }
 
   ngOnDestroy():void {

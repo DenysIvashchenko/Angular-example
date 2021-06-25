@@ -7,11 +7,8 @@ import { Observable } from 'rxjs';
 import { RemoveUser } from '../actions/user.actions';
 import { Store,Select } from '@ngxs/store'; 
 import { User } from '../models/user.model';
+import { NavBarService } from '../servisec/nav-bar.service';
 
-const path:Nav[] = [
-  {name:"About",path:"/about",isActive:true},
-  {name:"Aditional",path:'/add',isActive:false}
-]
 
 @Component({
   selector: 'app-about',
@@ -26,12 +23,13 @@ export class AboutComponent implements OnInit,OnDestroy {
 
   constructor(
     public store: Store,
-    public router: Router
+    public router: Router,
+    public navBarService: NavBarService
     ) {
 
     // this.users$ = this.store.select( state => state.users.users)
    }
-
+  
    delUser(name: string) {
     this.store.dispatch(new RemoveUser(name))
   }
@@ -39,7 +37,7 @@ export class AboutComponent implements OnInit,OnDestroy {
   ngOnInit(): void {
     //it is just for testing to see how dose it work
     this.users$.subscribe((a)=> console.log(a))
-    this.store.dispatch(new AddNavPath(path))
+    this.store.dispatch(new AddNavPath(this.navBarService.createPath({name:'h',path:'hello',isActive:true},{name:'world',path:'/world',isActive:false})))
   }
   
   ngOnDestroy():void {
